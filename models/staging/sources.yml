@@ -3,10 +3,19 @@ version: 2
 sources:
   - name: bike_sales_src
     database: BIKE_SALES__SAMPLE_DASHBOARD_SYNTHETIC_DATA
-    schema: BIKE_SALES
+    schema: BIKES_SALES
+    quoting:
+      database: true
+      schema: true
+      identifier: true
     tables:
-      - name: SALES
-      - name: CUSTOMERS
-      - name: PRODUCTS
-      - name: SUBPRODUCTS
-      - name: GEOGRAPHY
+      - name: customers
+        identifier: "2_CUSTOMERS"
+      - name: sales
+        identifier: "1_SALES"
+      - name: geography
+        identifier: "3_GEOGRAPHY"
+      - name: productsubcategory
+        identifier: "5_PRODUCTSUBCATEGORY"
+      - name: products
+        identifier: "11_PRODUCTS"
