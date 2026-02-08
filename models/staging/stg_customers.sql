@@ -12,7 +12,7 @@ renamed_customer as (
         GEOGRAPHYKEY as geography_id,
         NAME as customer_name,
         BIRTHDATE::date as date_of_birth,
-        MARITALSTATUS as maritial_status,
+        MARITALSTATUS as marital_status,
         GENDER as gender,
         replace(YEARLYINCOME, ',', '')::number(10,2) as yearly_income,
         NUMBERCHILDRENATHOME::integer as number_children_at_home,
