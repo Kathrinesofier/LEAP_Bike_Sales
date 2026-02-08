@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: bike_sales_src
+    database: BIKE_SALES__SAMPLE_DASHBOARD_SYNTHETIC_DATA
+    schema: BIKE_SALES
+    tables:
+      - name: SALES
+      - name: CUSTOMERS
+      - name: PRODUCTS
+      - name: SUBPRODUCTS
+      - name: GEOGRAPHY
