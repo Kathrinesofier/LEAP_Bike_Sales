@@ -1,3 +1,8 @@
+{{ config(
+    materialized='incremental',
+    unique_key='sales_id'
+) }}
+
 with s as (
 
     select
@@ -72,3 +77,7 @@ select
 
 from with_dim_keys
 
+{% if is_incremental() %}
+where order_date_id >
+      (select max(order_date_id) from {{ this }})
+{% endif %}
