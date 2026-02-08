@@ -1,0 +1,105 @@
+version: 2
+
+models:
+
+  # -----------------------
+  # Date dimension
+  # -----------------------
+  - name: dim_date
+    columns:
+      - name: order_date_id
+        tests: [not_null, unique]
+      - name: date_day
+        tests: [not_null]
+
+  # -----------------------
+  # Geography dimension
+  # -----------------------
+  - name: dim_geography
+    columns:
+      - name: sk_geography
+        tests: [not_null, unique]
+      - name: geography_id
+        tests: [not_null, unique]
+      - name: country_code
+        tests: [not_null]
+
+  # Optional snowflake: country
+  - name: dim_country
+    columns:
+      - name: sk_country
+        tests: [not_null, unique]
+      - name: country_code
+        tests: [not_null, unique]
+      - name: country
+        tests: [not_null]
+
+  # -----------------------
+  # Customer dimension
+  # -----------------------
+  - name: dim_customers
+    columns:
+      - name: sk_customer
+        tests: [not_null, unique]
+      - name: customer_id
+        tests: [not_null, unique]
+      - name: sk_geography
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_geography')
+                field: sk_geography
+
+  # -----------------------
+  # Product hierarchy
+  # -----------------------
+  - name: dim_products_sub_category
+    columns:
+      - name: sk_product_sub_category
+        tests: [not_null, unique]
+      - name: product_sub_category_id
+        tests: [not_null, unique]
+
+  - name: dim_products
+    columns:
+      - name: sk_product
+        tests: [not_null, unique]
+      - name: product_id
+        tests: [not_null, unique]
+      - name: sk_product_sub_category
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_products_sub_category')
+                field: sk_product_sub_category
+
+  # -----------------------
+  # Sales fact
+  # -----------------------
+  - name: fact_sales
+    columns:
+      - name: sales_id
+        tests: [not_null, unique]
+
+      - name: order_date_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: order_date_id
+
+      - name: sk_customer
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: sk_customer
+
+      - name: sk_product
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: sk_product
