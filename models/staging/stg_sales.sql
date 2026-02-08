@@ -9,7 +9,7 @@ renamed_sales as (
     select
         RECORDKEY as sales_id,
         PRODUCTKEY as product_id,
-        ORDERDATEKEY as order_date_id,
+        ORDERDATEKEY::string as order_date_id,
         CUSTOMERKEY as customer_id,
         SALESORDERNUMBER as sales_order_number,
         ORDERQUANTITY as order_qty,
