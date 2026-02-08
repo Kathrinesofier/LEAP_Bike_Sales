@@ -24,16 +24,6 @@ models:
       - name: country_code
         tests: [not_null]
 
-  # Optional snowflake: country
-  - name: dim_country
-    columns:
-      - name: sk_country
-        tests: [not_null, unique]
-      - name: country_code
-        tests: [not_null, unique]
-      - name: country
-        tests: [not_null]
-
   # -----------------------
   # Customer dimension
   # -----------------------
