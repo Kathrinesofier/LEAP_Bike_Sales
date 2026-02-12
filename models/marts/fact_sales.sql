@@ -63,7 +63,7 @@ select
     (sales_amount - total_product_cost) as gross_margin_amount,
     100 * (sales_amount - total_product_cost) / nullif(sales_amount, 0) as gross_margin_pct,
 
-    -- discount_amount / nullif(extended_amount, 0) as discount_pct_actual,
+    -- discount_amount / nullif(extended_amount, 0) as discount_pct_actual, 
 
     -- sales_amount / nullif(order_qty, 0) as effective_unit_price,
     freight / nullif(order_qty, 0) as freight_per_unit,
