@@ -57,7 +57,7 @@ select
     tax_amount,
     freight,
 
-    -- derived measures
+    -- measures
     (extended_amount - discount_amount) as net_extended_amount,
 
     (sales_amount - total_product_cost) as gross_margin_amount,
