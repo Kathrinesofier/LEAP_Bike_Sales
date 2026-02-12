@@ -30,9 +30,12 @@ with_dim_keys as (
 
     select
         s.*,
+        d.order_date_id,
         c.sk_customer,
         p.sk_product
     from s
+    left join {{ ref('dim_date') }} d
+      on s.order_date_id = d.order_date_id
     left join {{ ref('dim_customers') }} c
       on s.customer_id = c.customer_id
     left join {{ ref('dim_products') }} p
