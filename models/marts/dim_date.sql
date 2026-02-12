@@ -35,7 +35,7 @@ date_spine as (
 )
 
 select
-    to_number(to_varchar(date_day, 'YYYYMMDD')) as order_date_id,
+    to_varchar(date_day, 'YYYYMMDD') as order_date_id,
     date_day,
 
     year(date_day) as year,
