@@ -63,16 +63,16 @@ select
     (sales_amount - total_product_cost) as gross_margin_amount,
     100 * (sales_amount - total_product_cost) / nullif(sales_amount, 0) as gross_margin_pct,
 
-    discount_amount / nullif(extended_amount, 0) as discount_pct_actual,
+    -- discount_amount / nullif(extended_amount, 0) as discount_pct_actual,
 
-    sales_amount / nullif(order_qty, 0) as effective_unit_price,
+    -- sales_amount / nullif(order_qty, 0) as effective_unit_price,
     freight / nullif(order_qty, 0) as freight_per_unit,
 
     tax_amount / nullif(sales_amount, 0) as tax_rate,
-    (sales_amount + tax_amount + freight) as total_invoice_amount,
+    --(sales_amount + tax_amount + freight) as total_invoice_amount,
 
-    (extended_amount * unit_price_discount_pct) as expected_discount_amount,
-    (discount_amount - (extended_amount * unit_price_discount_pct)) as discount_amount_variance
+    --(extended_amount * unit_price_discount_pct) as expected_discount_amount,
+    --(discount_amount - (extended_amount * unit_price_discount_pct)) as discount_amount_variance
 
 from with_dim_keys
 
