@@ -71,7 +71,6 @@ select
     tax_amount / nullif(sales_amount, 0) as tax_rate,
     (sales_amount + tax_amount + freight) as total_invoice_amount,
 
-    -- quality / reconciliation helpers (nice for interviews)
     (extended_amount * unit_price_discount_pct) as expected_discount_amount,
     (discount_amount - (extended_amount * unit_price_discount_pct)) as discount_amount_variance
 
