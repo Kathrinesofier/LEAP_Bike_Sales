@@ -30,7 +30,7 @@ with_dim_keys as (
 
     select
         s.*,
-        d.order_date_id,  
+        d.order_date_id,
         c.sk_customer,
         p.sk_product
     from s
