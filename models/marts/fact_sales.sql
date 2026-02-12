@@ -61,7 +61,7 @@ select
     (extended_amount - discount_amount) as net_extended_amount,
 
     (sales_amount - total_product_cost) as gross_margin_amount,
-    (sales_amount - total_product_cost) / nullif(sales_amount, 0) as gross_margin_pct,
+    100 * (sales_amount - total_product_cost) / nullif(sales_amount, 0) as gross_margin_pct,
 
     discount_amount / nullif(extended_amount, 0) as discount_pct_actual,
 
